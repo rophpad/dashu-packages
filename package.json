@@ -1,0 +1,17 @@
+{
+  "name": "dashu-monorepo",
+  "private": true,
+  "license": "Apache-2.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run build && npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "clean": "rm -rf packages/*/dist"
+  },
+  "devDependencies": {
+    "tsup": "^8.5.1"
+  }
+}

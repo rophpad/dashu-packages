@@ -1,0 +1,51 @@
+{
+  "name": "@rophpad/dashu-provider-managed",
+  "version": "0.1.1",
+  "license": "Apache-2.0",
+  "description": "Dashu Managed AI provider — routes planning requests through Dashu Cloud using an installation credential.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "build:package": "npm run build",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "typecheck:package": "npm run typecheck",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@rophpad/dashu-core": "0.1.0",
+    "@rophpad/dashu-provider-openai-compatible": "0.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0"
+  },
+  "module": "./dist/index.js",
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rophpad/dashu.git",
+    "directory": "packages/provider-managed"
+  }
+}

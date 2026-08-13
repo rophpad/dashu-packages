@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "baseUrl": ".",
+    "paths": {
+      "@rophpad/dashu-core": ["packages/core/src/index.ts"],
+      "@rophpad/dashu-database-postgres": ["packages/database-postgres/src/index.ts"],
+      "@rophpad/dashu-next": ["packages/adapter-next/src/index.ts"],
+      "@rophpad/dashu-provider-managed": ["packages/provider-managed/src/index.ts"],
+      "@rophpad/dashu-provider-openai-compatible": ["packages/provider-openai-compatible/src/index.ts"],
+      "@rophpad/dashu-provider-openrouter": ["packages/provider-openrouter/src/index.ts"],
+      "@rophpad/dashu-react": ["packages/react/src/index.ts"]
+    }
+  }
+}

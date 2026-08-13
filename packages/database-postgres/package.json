@@ -1,0 +1,52 @@
+{
+  "name": "@rophpad/dashu-database-postgres",
+  "version": "0.1.1",
+  "license": "Apache-2.0",
+  "description": "Dashu data-source adapter for PostgreSQL: catalog introspection, read-only execution and a dialect-aware SQL guard.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "build:package": "npm run build",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "typecheck:package": "npm run typecheck",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@rophpad/dashu-core": "0.1.0",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.10",
+    "typescript": "^5.7.0"
+  },
+  "module": "./dist/index.js",
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rophpad/dashu.git",
+    "directory": "packages/database-postgres"
+  }
+}
