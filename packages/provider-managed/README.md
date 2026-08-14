@@ -1,22 +1,36 @@
 # @rophpad/dashu-provider-managed
 
-Dashu Managed AI provider. Routes query planning through Dashu Cloud using an installation credential.
+Dashu Managed AI provider. It sends planning requests from your backend to a configured Dashu Cloud deployment using an installation credential.
 
-Part of [Dashu](https://github.com/rophpad/dashu) — administrator-only, natural-language analytics for a product
-you already have. It runs inside your own backend; your database connection string and
-query results never leave your infrastructure.
+## Install
 
 ```bash
-npm install @rophpad/dashu-provider-managed
+npm install @rophpad/dashu-core @rophpad/dashu-provider-managed
 ```
+
+Requires a Node.js 20+ backend. The credential is a server secret and must never use a public/browser environment-variable prefix.
+
+## Usage
+
+```ts
+import { managedProvider } from "@rophpad/dashu-provider-managed";
+
+const ai = managedProvider({
+  cloudUrl: process.env.DASHU_CLOUD_URL!,
+  credential: process.env.DASHU_INSTALLATION_CREDENTIAL!,
+  model: "dashu-sql",
+  timeoutMs: 60_000,
+});
+```
+
+The default model/capability name is `dashu-sql`. Blank URL or credential fails immediately with `AI_NOT_CONFIGURED`.
 
 ## Documentation
 
-Everything — configuration, authorization, the result contract, the security model and the
-contributor guide — lives in one place:
+- [Provider selection and Managed AI](https://github.com/rophpad/dashu/blob/main/docs/guides/providers.md)
+- [Managed provider API reference](https://github.com/rophpad/dashu/blob/main/docs/reference/packages.md#rophpaddashu-provider-managed)
+- [Data sent to providers](https://github.com/rophpad/dashu/blob/main/docs/security/security-model.md#exactly-what-the-ai-provider-receives)
 
-**[Dashu documentation](https://github.com/rophpad/dashu#readme)**
-
-## Licence
+## License
 
 Apache-2.0

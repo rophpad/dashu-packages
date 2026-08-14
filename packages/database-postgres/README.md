@@ -1,22 +1,41 @@
 # @rophpad/dashu-database-postgres
 
-PostgreSQL data-source adapter for Dashu: catalog introspection, a dialect-aware SQL guard, and read-only execution.
+PostgreSQL adapter for Dashu: catalog introspection, schema rendering, SQL validation, pooling, cancellation, and read-only execution.
 
-Part of [Dashu](https://github.com/rophpad/dashu) — administrator-only, natural-language analytics for a product
-you already have. It runs inside your own backend; your database connection string and
-query results never leave your infrastructure.
+## Install
 
 ```bash
-npm install @rophpad/dashu-database-postgres
+npm install @rophpad/dashu-core @rophpad/dashu-database-postgres
 ```
+
+Requires a Node.js backend. Do not use this adapter in a browser or Edge runtime.
+
+## Usage
+
+```ts
+import { postgresAdapter } from "@rophpad/dashu-database-postgres";
+
+const database = postgresAdapter({
+  connectionString: process.env.DASHU_DATABASE_URL!,
+  schemas: ["analytics"],
+  schemaTtlMs: 60_000,
+  poolMax: 8,
+  connectionTimeoutMs: 10_000,
+  applicationName: "my-product-dashu",
+  ipFamily: "4",
+});
+```
+
+Use a dedicated PostgreSQL role with only `CONNECT`, approved schema `USAGE`, and approved object `SELECT`. The adapter's guard and read-only transaction are defense in depth; database grants remain authoritative.
+
+Also exported: `closePostgresPools`, `invalidateSchemaCache`, `guard`, `quoteIdent`, and `renderSchema`.
 
 ## Documentation
 
-Everything — configuration, authorization, the result contract, the security model and the
-contributor guide — lives in one place:
+- [PostgreSQL API reference](https://github.com/rophpad/dashu/blob/main/docs/reference/packages.md#rophpaddashu-database-postgres)
+- [Read-only role and security](https://github.com/rophpad/dashu/blob/main/docs/security/security-model.md)
+- [Operations, pooling, and cache](https://github.com/rophpad/dashu/blob/main/docs/guides/operations-and-troubleshooting.md)
 
-**[Dashu documentation](https://github.com/rophpad/dashu#readme)**
-
-## Licence
+## License
 
 Apache-2.0
